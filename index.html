@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,41 @@
     <title>Projcet jQuery</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
+
 <body>
-    
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <form action="#">
+                    <div class="form-group">
+                        <select id="recipe" class="form-control">
+                            <option value="" disabled selected>select a recipe</option>
+                            <option value="1">Nom Pom</option>
+                            <option value="2">Chocolate cake</option>
+                            <option value="3">Avocado Shake (Toek KaLok)</option>
+                        </select>
+                    </div>
+                </form>
+                <div id="done"></div>
+
+            </div>
+            <div class="col-3"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <table class="table table-bordereless" id="project"></table>
+            </div>
+            <div class="col-3"></div>
+        </div>
+    </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="js/project.js"></script>
 </body>
+
 </html>

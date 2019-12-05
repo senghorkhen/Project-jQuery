@@ -1,7 +1,7 @@
 $(document).ready(() => {
     $('#recipe').on('change', () => {
-        var fruit = $('#recipe').val();
-        choose(fruit);                                                                                          
+        var recipes = $('#recipe').val();
+        choose(recipes);                                                                                          
     });
 });
 

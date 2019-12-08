@@ -12,34 +12,48 @@
 <body>
     <div class="container mt-5">
         <div class="row">
-            <div class="col-3"></div>
-            <div class="col-6">
-                <form action="#">
-                    <div class="form-group">
-                        <select id="recipe" class="form-control">
-                            <option value="" disabled selected>select a recipe</option>
-                            <option value="1">Nom Pom</option>
-                            <option value="2">Chocolate cake</option>
-                            <option value="3">Avocado Shake (Toek KaLok)</option>
-                        </select>
-                    </div>
-                </form>
-                <div id="done"></div>
-
+            <div class="col-4"></div>
+            <div class="col-4">
+                <select id="select_recipes" class="form-control">
+                    <option value="" disabled selected>Select Recipe</option>
+                    <option value="1">Chocolate cake</option>
+                    <option value="0">Avocado Shake (Toek KaLok)</option>
+                </select>
             </div>
-            <div class="col-3"></div>
+            <div class="col-4"></div>
         </div>
     </div>
+    <br>
+    <br>
 
     <div class="container">
         <div class="row">
-            <div class="col-3"></div>
-            <div class="col-6">
-                <table class="table table-bordereless" id="project"></table>
+            <div class="col-2"></div>
+            <div id="card">
+
             </div>
-            <div class="col-3"></div>
+            <div class="col-2"></div>
         </div>
     </div>
+
+    <div class="container mt-5">
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-4">
+                        <table class="table table-borderless" id="ingradiants"></table>
+                </div>
+
+                <div class="col-4">
+                        <div id="instruction">
+
+                            </div>
+                </div>
+                <div class="col-2"></div>
+            </div>
+        </div>
+    </div>
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="js/project.js"></script>

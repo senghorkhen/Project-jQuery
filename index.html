@@ -14,47 +14,27 @@
         <div class="row">
             <div class="col-4"></div>
             <div class="col-4">
-                <select id="select_recipes" class="form-control">
-                    <option value="" disabled selected>Select Recipe</option>
-                    <option value="1">Chocolate cake</option>
-                    <option value="0">Avocado Shake (Toek KaLok)</option>
+                <select class="form-control" id="recipe">
+                    <option value="" disabled selected>Choose Recipe</option>
+                    <hr>
+                    <h1 class="display-1 text-center"></h1>
                 </select>
             </div>
-            <div class="col-4"></div>
+            <div class="col-4" id="recipe_project"></div>
         </div>
-    </div>
-    <br>
-    <br>
 
-    <div class="container">
         <div class="row">
             <div class="col-2"></div>
-            <div id="card">
+            <div class="col-4">
+                <table class="table table-borderless" id="ingradiants"></table>
+            </div>
+            <div class="col-4">
 
             </div>
             <div class="col-2"></div>
         </div>
     </div>
-
-    <div class="container mt-5">
-        <div class="container mt-5">
-            <div class="row">
-                <div class="col-2"></div>
-                <div class="col-4">
-                        <table class="table table-borderless" id="ingradiants"></table>
-                </div>
-
-                <div class="col-4">
-                        <div id="instruction">
-
-                            </div>
-                </div>
-                <div class="col-2"></div>
-            </div>
-        </div>
-    </div>
-
-
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="js/project.js"></script>
 </body>

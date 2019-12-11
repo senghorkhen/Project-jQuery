@@ -2,58 +2,67 @@ function getUrl() {
     var url = "https://raw.githubusercontent.com/radytrainer/test-api/master/test.json";
     return url;
 }
- $(document).ready(function() {
-     getApi();
-     $('#recipe').on('change', function() {
-         var rcipeId = $('#recipe').val();
-         eachRecipe(rcipeId);
-     })
- });
+$(document).ready(function () {
+    getApi();
+    $('#recipe').on('change', function () {
+        var rcipeId = $('#recipe').val();
+        eachRecipe(rcipeId);
+    })
+});
 
- function getApi() {
-     $.ajax({
-         dataType: 'json',
-         url: getUrl(),
-         success: (data) => chooseRecipe(data.recipes), // bos jea array
-         error: () => console.log('Cannot get data'),
-     });
- }
+function getApi() {
+    $.ajax({
+        dataType: 'json',
+        url: getUrl(),
+        success: (data) => chooseRecipe(data.recipes),
+        error: () => console.log('Cannot get data'),
+    });
+}
 var allData = [];
- function chooseRecipe(recipe) {
-     allData = recipe;
-     var option = "";
-     recipe.forEach(item => {
-         option += `<option value="${item.id}">${item.name}</option>`;
-     });
-     $('#recipe').append(option);
- }
+function chooseRecipe(recipe) {
+    allData = recipe;
+    var option = "";
+    recipe.forEach(item => {
+        option += `<option value="${item.id}">${item.name}</option>`;
+    });
+    $('#recipe').append(option);
+}
 
- function eachRecipe(id) {
-     allData.forEach(item => {
-         if(item.id == id) {
- // Each Recipe
+function eachRecipe(id) { 
+    allData.forEach(item => {
+        if (item.id == id) {
+            var step = item.instructions;
+            var cutStep = step.split("<step>");
+            cutStep.forEach(element => {
+                console.log(element);
+            });
+            // Each Recipe
             // showRecipe
-            showRecipe(item.name, item.iconUrl);
+            showRecipe(item.name, item.iconUrl,item.instructions);
+
             // showIngredient
             showIngredient(item.ingredients);
+
             // showStep
-         }
-     });
- }
- 
+           
+        }
+    });
+}
+
 // showRecipe
- function showRecipe(name, img) {
+function showRecipe(name, img,instruction) {
+ 
     var result = "";
     result += `<img src="${img}" width="100">
     <h2>${name}</h2>
     `;
     $('#recipe_project').html(result);
- }
+}
 
- // get ingrediant
- function showIngredient(ing) {
-     var ingredient = "";
-     ing.forEach(item => {
+// get ingrediant
+function showIngredient(ing) {
+    var ingredient = "";
+    ing.forEach(item => {
         ingredient += `
         <tr>
             <td><img src="${item.iconUrl}" width="25" class="img-fluid"></td>
@@ -62,6 +71,6 @@ var allData = [];
             <td>${item.name}</td>
         </tr>
         `;
-     });
-     $('#ingradiants').html(ingredient);
- }
+    });
+    $('#ingradiants_project').html(ingredient);
+}

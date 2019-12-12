@@ -33,28 +33,36 @@ function eachRecipe(id) {
         if (item.id == id) {
             var step = item.instructions;
             var cutStep = step.split("<step>");
-            cutStep.forEach(element => {
-                console.log(element);
-            });
+             // showScutSteptep
+            result = "";
+            for(var i = 1;i<cutStep.length;i++){
+                result += `
+                Step ${i}
+                <p>${cutStep[i]}</p>
+            `;
+            $("#instruction_project").html(result);
+            }
+           
+                
             // Each Recipe
             // showRecipe
-            showRecipe(item.name, item.iconUrl,item.instructions);
-
+            showRecipe(item.name, item.iconUrl);
             // showIngredient
-            showIngredient(item.ingredients);
-
-            // showStep
-           
+            showIngredient(item.ingredients);  
         }
     });
 }
 
 // showRecipe
-function showRecipe(name, img,instruction) {
- 
+function showRecipe(name, img) {
     var result = "";
-    result += `<img src="${img}" width="100">
-    <h2>${name}</h2>
+    result += `
+    <div class="row">
+    <div class="col-3"></div>
+    <div class="col-3"><h3>${name}</h3></div>
+    <div class="col-3"><img src="${img}"width="100"></div>
+    <div class="col-3"></div>
+    </div>
     `;
     $('#recipe_project').html(result);
 }

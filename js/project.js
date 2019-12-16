@@ -7,9 +7,10 @@ $(document).ready(function () {
     $('#recipe').on('change', function () {
         var rcipeId = $('#recipe').val();
         eachRecipe(rcipeId);
-    })
+    });
 });
 
+// gteApi
 function getApi() {
     $.ajax({
         dataType: 'json',
@@ -26,35 +27,36 @@ function chooseRecipe(recipe) {
         option += `<option value="${item.id}">${item.name}</option>`;
     });
     $('#recipe').append(option);
+    $('#css').hide();
 }
 
-function eachRecipe(id) { 
+function eachRecipe(id) {
     allData.forEach(item => {
         if (item.id == id) {
             var step = item.instructions;
             var cutStep = step.split("<step>");
-             // showScutSteptep
+            // showScutSteptep
             result = "";
-            for(var i = 1;i<cutStep.length;i++){
+            for (var i = 1; i < cutStep.length; i++) {
                 result += `
-                Step ${i}
+                <p class="text-primary">Step ${i}</p>
                 <p>${cutStep[i]}</p>
             `;
-            $("#instruction_project").html(result);
+                $("#instruction_project").html(result);
+                $('#css').show();
             }
-           
-                
-            // Each Recipe
+
             // showRecipe
-            showRecipe(item.name, item.iconUrl);
+            showRecipe(item.name, item.iconUrl, item.nbGuests);
+
             // showIngredient
-            showIngredient(item.ingredients);  
+            showIngredient(item.ingredients);
         }
     });
 }
 
 // showRecipe
-function showRecipe(name, img) {
+function showRecipe(name, img, nbGuests) {
     var result = "";
     result += `
     <div class="row">
@@ -63,8 +65,51 @@ function showRecipe(name, img) {
     <div class="col-3"><img src="${img}"width="100"></div>
     <div class="col-3"></div>
     </div>
+    
+    <div class="container mt-5">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-4">
+            <h5>Number of persons</h5>
+        </div>
+        <div class="col-4">
+        <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <button type="button" id="minus">&minus;</button>
+        </div>
+        <input type="number" class="form-control text-center" value="${nbGuests}" disabled id="member_project" max="15"
+            min="0">
+        <div class="input-group-append">
+            <button type="button" id="add">&#x2b;</button>
+        </div>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
+    <div class="container mt-5">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-4">
+            <h5 class="text-center">Ingredients</h5></div>
+        <div class="col-4">
+            <h5>Instructions</h5>
+        </div>
+        <div class="col-2"></div>
+    </div>
+    </div>
     `;
     $('#recipe_project').html(result);
+
+    // function click on icon plus
+    $("#add").on('click', function () {
+        var num = parseInt($("#member_project").val());
+        add(num);
+    });
+    // function click on icon minus
+    $("#minus").on('click', function () {
+        var num = parseInt($("#member_project").val());
+        minus(num);
+    });
 }
 
 // get ingrediant
@@ -81,4 +126,22 @@ function showIngredient(ing) {
         `;
     });
     $('#ingradiants_project').html(ingredient);
+}
+
+
+// increase value when click on icon sum
+function add(num) {
+    var numAdd = parseInt(num) +1;
+    if(numAdd <= 15) {
+        $("#member_project").val(numAdd);
+        // getGuests($("#member_project").val());
+    }
+}
+// decrease value when click on icon minus
+function minus(num) {
+    var minus = parseInt(num)-1;
+    if(minus >= 1) {
+        $("#member_project").val(minus);
+        // getGuests($("#member_project").val());
+    }
 }

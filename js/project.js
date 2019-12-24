@@ -7,8 +7,8 @@ $(document).ready(function () {
 });
 
 // function click on icon plus
-$("#add").on('click', function () {
-    add();
+$("#plus").on('click', function () {
+    plus();
     var member = $("#member_project").val();
     var seclect = $('#recipe').val();
     updateRecipe(seclect,member);
@@ -49,7 +49,7 @@ function chooseRecipe(recipe) {
     $('#recipe').append(option);
 }
 $('#action').hide();
-$('#num').hide();
+$('#number').hide();
 $('#card').hide();
 
 // function for loop data from array variable
@@ -70,7 +70,7 @@ function eachRecipe(id) {
             oldGuests = $('#member_project').val();
         }
     });
-    $('#num').show();
+    $('#number').show();
 }
 
 // updateRecipe
@@ -113,11 +113,9 @@ function getStep(step) {
     }
 }
 
-// get ingrediant
+// get ingredient
 function showIngredient(ing) {
     var ingredient = "";
-    ingredient += `
-    `;
     ing.forEach(item => {
         ingredient += `
         <table class="striped">
@@ -130,9 +128,10 @@ function showIngredient(ing) {
         </table>
         `;
     });
-    $('#ingradiants_project').html(ingredient);
+    $('#ingredients_project').html(ingredient);
     $('#card').show();
 }
+
 // updateIngredient
 function updateIngredient(ing,member) {
     var ingredient = "";
@@ -147,11 +146,11 @@ function updateIngredient(ing,member) {
         </tr>
         `;
     });
-    $('#ingradiants_project').html(ingredient);
+    $('#ingredients_project').html(ingredient);
 }
 
 // increase value when click on icon add
-function add() {
+function plus() {
     var increas = $('#member_project').val();
     var numAdd = parseInt(increas) + 1;
     if (numAdd <= 15) {

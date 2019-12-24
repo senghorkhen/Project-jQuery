@@ -7,15 +7,25 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Projcet jQuery</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="img/broswer.png" rel="icon">
+
+<title>Project JS</title>
 </head>
 <style>
     body {
-        background-image: url(recipe.jpg);
+        background-image: url(img/recipes.png);
         background-size: cover;
+    }
+    .card-body {
+        background: rgb(240, 233, 233);
     }
 </style>
 
 <body>
+    <!-- logo -->
+    <img src="img/logo.png" alt="logo" width="100px"  style="margin-left:50px">
+    <strong><p class="text-dark" style="margin-left:60px">Welcome</p></strong>
+
     <div class="container mt-5">
         <div class="row">
             <div class="col-4"></div>
@@ -33,17 +43,18 @@
         <div class="container mt-5">
             <div class="row">
                 <div class="col-6" id="recipes">
-
                 </div>
                 <div class="col-3">
-                    <h5 style="color: rgb(46, 37, 43)" class="text-center" id="num">Number of person</h5>
+                    <marquee>
+                        <h5 style="color: rgb(46, 37, 43)" class="text-center" id="number">Number Of Person</h5>
+                    </marquee>
                     <div class="input-group mb-3" id="action">
                         <div class="input-group-prepend">
                             <button type="button" class="btn btn-success" id="minus">&minus;</button>
                         </div>
                         <input type="number" class="form-control text-center" disabled id="member_project">
                         <div class="input-group-append">
-                            <button type="button" class="btn btn-success" id="add">&#x2b;</button>
+                            <button type="button" class="btn btn-success" id="plus">&#x2b;</button>
                         </div>
                     </div>
                 </div>
@@ -52,13 +63,15 @@
         </div>
 
         <br>
-        <div class="card shadow" style="border: 5px solid pink" id="card">
+        <div class="card shadow" style="border: 6px solid pink" id="card">
             <div class="card-body">
                 <div class="row">
                     <div class="col-6">
-                        <table class="table table-borderless" id="ingradiants_project"></table>
+                        <h5>Ingredient</h5>
+                        <table class="table table-borderless" id="ingredients_project"></table>
                     </div>
                     <div class="col-6">
+                        <h5>Instructions</h5>
                         <table class="table table-borderless" id="instruction_project"></table>
                     </div>
                 </div>

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // getURL function for control url
 function getURL() {
   var url = "https://raw.githubusercontent.com/radytrainer/test-api/master/test.json";
@@ -6,6 +7,8 @@ function getURL() {
 
 
 // jQuery
+=======
+>>>>>>> 73ea5dfc82d5b9eec839fe501b8bb3990d5433ee
 $(document).ready(function () {
   // call function for request API
   requestdata();
@@ -16,6 +19,7 @@ $(document).ready(function () {
   })
 });
 
+<<<<<<< HEAD
 
 // function for query API
 function requestdata() {
@@ -186,3 +190,165 @@ function getPerson(person) {
   });
   $("#ingredients").html(result);
 }
+=======
+// function click on icon plus
+$("#plus").on('click', function () {
+    plus();
+    var member = $("#member_project").val();
+    var seclect = $('#recipe').val();
+    updateRecipe(seclect,member);
+});
+
+// function click on icon minus
+$("#minus").on('click', function () {
+    minus();
+    var member = $("#member_project").val();
+    var seclect = $('#recipe').val();
+    updateRecipe(seclect,member);
+});
+
+// get url
+function getUrl() {
+    var url = "https://raw.githubusercontent.com/radytrainer/test-api/master/test.json";
+    return url;
+}
+
+// gteApi
+function getApi() {
+    $.ajax({
+        dataType: 'json',
+        url: getUrl(),
+        success: (data) => chooseRecipe(data.recipes),
+        error: () => console.log('Cannot get data'),
+    });
+}
+
+// get recipe
+var allData = [];
+function chooseRecipe(recipe) {
+    allData = recipe;
+    var option = "";
+    recipe.forEach(item => {
+        option += `<option value="${item.id}">${item.name}</option>`;
+    });
+    $('#recipe').append(option);
+}
+$('#action').hide();
+$('#number').hide();
+$('#card').hide();
+
+// function for loop data from array variable
+function eachRecipe(id) {
+    allData.forEach(item => {
+        if (item.id == id) {
+            recipeimage(item.name,item.iconUrl);
+
+            //step
+            getStep(item.instructions);
+
+            // showIngredient
+            showIngredient(item.ingredients);
+            $('#action').show();
+            $('#member_project').val(item.nbGuests);
+
+            // oldGuest
+            oldGuests = $('#member_project').val();
+        }
+    });
+    $('#number').show();
+}
+
+// updateRecipe
+function updateRecipe(seclect,member) {
+    allData.forEach(item => {
+        if (item.id == seclect) {
+            recipeimage(item.name,item.iconUrl);
+
+            // step
+            getStep(item.instructions);
+
+            // updateIngredient
+            updateIngredient(item.ingredients,member);
+            $('#action').show();
+        }
+    });
+}
+
+//recipeimage
+function recipeimage(name, image){
+    var recipe = "";
+    recipe += `
+    <h5 class="text-center">${name}</h5>
+    <img src="${image}" width = "150" class="rounded-circle img-thumbnail">
+    `;
+    $('#recipes').html(recipe);
+}
+
+//step
+function getStep(step) {
+    var cutStep = step.split("<step>");
+    // showScutSteptep
+    result = "";
+    for (var i = 1; i < cutStep.length; i++) {
+        result += `
+        <p class="text-primary">Step ${i}</p>
+        <p>${cutStep[i]}</p>
+    `;
+        $("#instruction_project").html(result);
+    }
+}
+
+// get ingredient
+function showIngredient(ing) {
+    var ingredient = "";
+    ing.forEach(item => {
+        ingredient += `
+        <table class="striped">
+        <tr>
+            <td><img src="${item.iconUrl}" width="50" class ="img-fluid img-thumbnail"></td>
+            <td>${item.quantity}</td>
+            <td>${item.unit[0]}</td>
+            <td>${item.name}</td>
+        </tr>
+        </table>
+        `;
+    });
+    $('#ingredients_project').html(ingredient);
+    $('#card').show();
+}
+
+// updateIngredient
+function updateIngredient(ing,member) {
+    var ingredient = "";
+    ing.forEach(item => {
+        var update = item.quantity * parseInt(member) /oldGuests;
+        ingredient += `
+        <tr>
+            <td><img src="${item.iconUrl}" width="50" class ="img-fluid img-thumbnail"></td>
+            <td>${update}</td>
+            <td>${item.unit[0]}</td>
+            <td>${item.name}</td>
+        </tr>
+        `;
+    });
+    $('#ingredients_project').html(ingredient);
+}
+
+// increase value when click on icon add
+function plus() {
+    var increas = $('#member_project').val();
+    var numAdd = parseInt(increas) + 1;
+    if (numAdd <= 15) {
+        $("#member_project").val(numAdd);
+    }
+}
+
+// decrease value when click on icon minus
+function minus() {
+    var decreas = $('#member_project').val();
+    var minus = parseInt(decreas) - 1;
+    if (minus >= 1) {
+        $("#member_project").val(minus);
+    }
+}
+>>>>>>> 73ea5dfc82d5b9eec839fe501b8bb3990d5433ee
